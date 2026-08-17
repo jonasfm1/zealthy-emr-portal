@@ -7,7 +7,7 @@ import PortalNavbar from '@/components/PortalNavbar';
 import { Patient, Prescription } from '@/types';
 
 // API base URL definition
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 export default function PortalDashboard() {
   const router = useRouter();
