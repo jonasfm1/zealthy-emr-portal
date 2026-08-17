@@ -7,7 +7,7 @@ import AdminNavbar from '@/components/AdminNavbar';
 import { Patient, Appointment, Prescription } from '@/types';
 
 // API base endpoint definition
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'; 
+const API_BASE_URL = 'https://zealthy-emr-portal.onrender.com/api';
 
 export default function PatientDetailPage() {
   const params = useParams();
