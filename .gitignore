@@ -1,0 +1,16 @@
+# Node & Next.js
+node_modules/
+.next/
+out/
+build/
+*.log
+
+# Python & Venv
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+
+# OS
+.DS_Store
