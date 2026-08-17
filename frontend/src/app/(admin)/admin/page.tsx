@@ -6,6 +6,9 @@ import AdminNavbar from '@/components/AdminNavbar';
 import { Patient } from '@/types';
 
 export default function AdminDashboard() {
+
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+  
   // State for storing the list of patients fetched from backend
   const [patients, setPatients] = useState<Patient[]>([]);
   // State for search/filter term
@@ -21,15 +24,12 @@ export default function AdminDashboard() {
   });
 
   // Fetch registered patients from Flask backend when component mounts
-  useEffect(() => {
-    fetch('http://127.0.0.1:5000/api/patients')
-      .then((res) => {
-        if (!res.ok) throw new Error('Error fetching patients');
-        return res.json();
-      })
-      .then((data: Patient[]) => setPatients(data))
-      .catch((err) => console.error('Request error:', err));
-  }, []);
+    useEffect(() => {
+        fetch(`${API_BASE_URL}/patients`)
+        .then((res) => res.json())
+        .then((data: Patient[]) => setPatients(data))
+        .catch((err) => console.error('Request error:', err));
+    }, []);
 
   // Filter patients based on search input matching name or email
   const filteredPatients = patients.filter(p => 
@@ -42,13 +42,11 @@ export default function AdminDashboard() {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/patients', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newPatient)
-      });
+        const response = await fetch(`${API_BASE_URL}/patients`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newPatient),
+        });
 
       if (!response.ok) {
         throw new Error('Failed to register patient');
