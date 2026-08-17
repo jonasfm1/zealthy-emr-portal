@@ -8,6 +8,9 @@ from models import db, Patient, Appointment, Prescription
 # Function to seed the database with initial patient, appointment, and prescription data
 def seed_database():
     with app.app_context():
+        # Create all tables in the database if they do not exist yet
+        db.create_all()
+
         # URL source for raw JSON data
         json_url = "https://gist.githubusercontent.com/sbraford/73f63d75bb995b6597754c1707e40cc2/raw/50c5792ad4867be5d09b7bc6542e7dabc448b0dc/data.json"
         base_dir = os.path.dirname(os.path.abspath(__file__))
