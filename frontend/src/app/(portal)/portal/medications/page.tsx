@@ -7,7 +7,7 @@ import PortalNavbar from '@/components/PortalNavbar';
 import { Prescription } from '@/types';
 
 // API base URL definition
-const API_BASE_URL = 'https://zealthy-emr-portal.onrender.com/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 export default function MedicationsPage() {
   const router = useRouter();
